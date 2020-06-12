@@ -5,7 +5,7 @@
 
     A simple command line application to cut and copy csv files.
 
-    :copyright: 2020 rad_coon
+    :copyright: 2020 rad-coon
     :license: BSD-3-Clause
 """
 import click
