@@ -1,0 +1,6 @@
+{
+    "delimiter": ",",
+    "quotechar": "\"",
+    "ignore_first_line": false,
+    "schema": [true, true, true, true, true, true, false, true, true]
+}
