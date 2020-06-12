@@ -49,4 +49,4 @@ Folgende Parameter müssen in der JSON-Datei zwingend angegeben werdem:
 |`schema`|Gibt an welche Spalten kopiert werden sollen. Hierzu wird ein Array von Booleans übergeben. Für jede Spalte muss ein Boolean übergeben werden. Die Reihenfolge der Booleans im Array entspricht der Reihenfolge der Spalten in der Quell-CSV-Datei.|`[true, true, true, true, true, true, false, true, true]`
 
 ## 4. Beispiele
-Dieses Skript kommt mit exemplarischen Daten für die Quelldatei: `input.csv`, der Zieldatei: `output.csv` und der Konfigurationsdatei: `pattern.json`
+Dieses Skript kommt mit exemplarischen Daten für die Quelldatei: `input.csv` bzw. `input_with_header.csv` , der Zieldatei: `output.csv` und der Konfigurationsdatei: `pattern.json`
