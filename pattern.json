@@ -2,5 +2,9 @@
     "delimiter": ",",
     "quotechar": "\"",
     "ignore_first_line": false,
-    "schema": [true, true, true, true, true, true, false, true, true]
+    "schema": [true, true, true, true, true, true, false, true, true],
+    "logging": {
+        "logToFile": false,
+        "logfile": "C:/fu/logme.log"
+    }
 }
