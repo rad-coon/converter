@@ -7,9 +7,9 @@ Das CLI basierende Skript wurd auf basis von Flask entwickelt.
 Die benötigten Abhängigkeiten sind gewohnt in der `requirements.txt` zu finden und lassen sich mit `pip install -r requirements.txt` erfüllen.
 
 ## 2. Start des Skripts
-Nachdem alle Abhängigkeiten erfüllt wurden muss sichergestellt werden, dass die Umgebugsvariable `FLASK_APP` (siehe 2.1) gesetzt wurde, kann die Anwendung wie folgt gestartet werden: `flask convert input.csv output.csv pattern.json`
+Nachdem alle Abhängigkeiten erfüllt wurden muss sichergestellt werden, dass die Umgebugsvariable `FLASK_APP` (siehe 2.1) gesetzt wurde. Danach kann die Anwendung wie folgt gestartet werden: `flask convert input.csv output.csv pattern.json`
 
-Der hier genannter Prozess lässt sich auch in einer Batch oder einem Shellskript zusammenfassen.
+Der hier genannte Prozess lässt sich auch in einer Batch oder einem Shellskript zusammenfassen.
 
 ### 2.1 Umgebungsvariablen
 Da das Skript auf FLASK basiert, können/müssen über Umgebungsvariablen einige Einstellungen vorgenommen werden:
