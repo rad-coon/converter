@@ -27,6 +27,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(name
 @click.argument('output')
 @click.argument('pattern')
 def convert(input, output, pattern):
+    """Kopiert Quell-CSV-Datei, unter Anwendung der Regeln in der Pattern-JSON-Datei, in Ziel-CSV-Datei. Siehe auch: https://github.com/rad-coon/converter/blob/master/README.MD"""
+
     # reading pattern
     config = read_pattern(pattern)
     app.logger.info('initialized')
