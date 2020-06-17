@@ -44,7 +44,7 @@ Folgende Parameter müssen in der JSON-Datei zwingend angegeben werdem:
 |Parameter|Bedeutung|Beispiel|
 |---------|---------|--------|
 |`delimiter`|Gibt sowohl für die Quell-, als auch für die Ziel-CSV-Datei an, welche(s) Zeichen zum trennen der Spalten verwendet werden soll.|`","` oder `";"` etc.|
-|`quotechar`|Gibt für die Quell-, als auch für die Ziel-CSV-Datei an, welcher Charakter benutzt werden soll, Texte einer Zelle zu Umranden, welche den definierten Delimiter enthalten|`"\""` oder `"|"` etc. |
+|`quotechar`|Gibt für die Quell-, als auch für die Ziel-CSV-Datei an, welcher Charakter benutzt werden soll, Texte einer Zelle zu Umranden, welche den definierten Delimiter enthalten|`"\""` oder `"^"` etc. |
 |`ignore_first_line`|Oft wird bei einer CSV-Datei auch eine Header-Zeile mitgeliefert, welche die Spalten beschreibt. Mit diesem Parameter wird gesteuert, ob diese Zeile mitkopiert werden soll|`true` oder `false`|
 |`schema`|Gibt an welche Spalten kopiert werden sollen. Hierzu wird ein Array von Booleans übergeben. Für jede Spalte muss ein Boolean übergeben werden. Die Reihenfolge der Booleans im Array entspricht der Reihenfolge der Spalten in der Quell-CSV-Datei.|`[true, true, true, true, true, true, false, true, true]`|
 |`logging.logToFile`|Gibt an ob zusätzlich eine Logdatei angelegt werden soll. Logdateien werden max 5MB groß. Danach bekommt die Logdatei den Suffix .1 / .2 etc. und es wird eine neue Logfile angelegt. Es werden maximal fünf vorgänger aufgehoben.|`true` oder `false`|
