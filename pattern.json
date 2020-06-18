@@ -4,7 +4,11 @@
     "ignore_first_line": false,
     "schema": [true, true, true, true, true, true, false, true, true],
     "logging": {
-        "logToFile": true,
-        "logfile": "C:/fu/convert.log"
+        "log_debug": true,
+        "log_to_file": true,
+        "logfile": "C:/fu/convert.log",
+        "backup_count": 5,
+        "max_byte_size": 5242880,
+        "log_format": "%(asctime)s Schwimmbaeder > %(name)s > %(funcName)s: %(message)s"
     }
 }

@@ -12,6 +12,7 @@ import click
 import json
 import csv
 import logging
+from flask.logging import default_handler
 from logging.handlers import RotatingFileHandler
 from flask import Flask
 from flask_cli import FlaskCLI
@@ -19,8 +20,6 @@ from config import Config
 
 app = Flask('csv-converter')
 FlaskCLI(app)
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 @app.cli.command('convert')
 @click.argument('input')
@@ -31,13 +30,14 @@ def convert(input, output, pattern):
 
     # reading pattern
     config = read_pattern(pattern)
+    setup_logging(config)   
+    
     app.logger.info('initialized')
-    if config.log_to_file is True:
-        activate_file_logging(config.logfile)    
 
     app.logger.debug(f'using delimiter: {config.delimiter}')
     app.logger.debug(f'using quotechar: {config.quotechar}')
     app.logger.debug(f'ignoring first line (header): {config.ignore_header}')
+
     col=0
     for read_col in config.schema:
         app.logger.debug(f'reading pattern for column {col}: {read_col}')
@@ -60,10 +60,10 @@ def convert(input, output, pattern):
         col = 0
         while col < row_length:
             if config.schema[col] is True:
-                app.logger.debug(f' row: {row} column: {col} data: {row_data[col]}')
+                app.logger.debug(f'row: {row} column: {col} data: {row_data[col]}')
                 target_row.append(row_data[col])
             else:
-                app.logger.debug(f' row: {row} column: {col} ignoring column')
+                app.logger.debug(f'row: {row} column: {col} ignoring column')
             col+=1
         target_array.append(target_row)
         row+=1
@@ -85,10 +85,20 @@ def read_pattern(pattern):
     config = Config(pattern_data)
     return config
 
-def activate_file_logging(filename):
-    log_file = filename
-    formatter = logging.Formatter('%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
-    handler = RotatingFileHandler(log_file,maxBytes=5000000, backupCount=5)
-    handler.setFormatter(formatter)
-    app.logger.addHandler(handler)
+def setup_logging(config):
+    formatter = logging.Formatter(config.log_format)
+    app.logger.removeHandler(default_handler)
+    app.logger.setLevel(logging.DEBUG if config.log_debug is True else logging.INFO)
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.DEBUG if config.log_debug is True else logging.INFO)
+    ch.setFormatter(formatter)
+    app.logger.info(f'debug logging: {config.log_debug}')
+    app.logger.addHandler(ch)
     
+    if config.log_to_file is True:
+        handler = RotatingFileHandler(config.logfile,maxBytes=config.max_byte_size, backupCount=config.backup_count)
+        handler.setFormatter(formatter)
+        app.logger.addHandler(handler)
+        app.logger.debug(f'logging to file: {config.logfile}')
+        app.logger.debug(f'max size for log files set to {config.max_byte_size / (2 **20)} MB')
+        app.logger.debug(f'keeping up to {config.backup_count} copies of older log files')
