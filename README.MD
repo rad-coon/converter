@@ -9,13 +9,13 @@ Die benötigten Abhängigkeiten sind gewohnt in der `requirements.txt` zu finden
 ## 2. Start des Skripts
 Nachdem alle Abhängigkeiten erfüllt wurden muss sichergestellt werden, dass die Umgebugsvariable `FLASK_APP` (siehe 2.1) gesetzt wurde. Danach kann die Anwendung wie folgt gestartet werden: `flask convert input.csv output.csv pattern.json`
 
-Der hier genannte Prozess lässt sich auch in einer Batch oder einem Shellskript zusammenfassen.
+Der hier genannte Prozess lässt sich auch in einer Batch oder einem Shellskript zusammenfassen. Siehe 4.
 
 ### 2.1 Umgebungsvariablen
 Da das Skript auf FLASK basiert, können/müssen über Umgebungsvariablen einige Einstellungen vorgenommen werden:
 |Variable|Bedeutung|Optional|Beispiel|
 |---------|--------|-|--------|
-|`FLASK_APP`|gibt an, welches Skript von flask gestartet werden soll. Für unseren Fall müssen wir den Pfad zur `convert.py` angeben.|Nein|`FLASK_APP=convert.py`|
+|`FLASK_APP`|Gibt an, welches Skript von flask gestartet werden soll. Für unseren Fall müssen wir den Pfad zur `convert.py` angeben.|Nein|`FLASK_APP=convert.py`|
 |`FLASK_DEBUG`|Gibt an, ob das Skript im Debugmodus gestartet werden soll. Hierbei werden erheblich mehr Log-Meldungen erzeugt.|Ja|`FLASK_DEBUG=TRUE`|
 
 ### 2.2 Startparameter
@@ -51,4 +51,4 @@ Folgende Parameter müssen in der JSON-Datei zwingend angegeben werdem:
 |`logging.logfile`|Gibt den Pfad zur Logdatei an.|`C:/logs/converter.log`|
 
 ## 4. Beispiele
-Dieses Skript kommt mit exemplarischen Daten für die Quelldatei: `input.csv` bzw. `input_with_header.csv` , der Zieldatei: `output.csv` und der Konfigurationsdatei: `pattern.json`
+Dieses Skript kommt mit exemplarischen Daten für die Quelldatei: `input.csv` bzw. `input_with_header.csv` , der Zieldatei: `output.csv` und der Konfigurationsdatei: `pattern.json`. Ferner findet sich ein möglicher Aufbau einer Batchdatei in `convert.bat`.

@@ -82,9 +82,7 @@ def read_pattern(pattern):
     app.logger.info(f'using pattern file {pattern} ...')
     pattern_file=open(pattern)
     pattern_data=json.load(pattern_file)
-    config = Config(pattern_data['quotechar'],pattern_data['delimiter'],
-                    pattern_data['ignore_first_line'],pattern_data['schema'],
-                    pattern_data['logging']['logToFile'],pattern_data['logging']['logfile'])
+    config = Config(pattern_data)
     return config
 
 def activate_file_logging(filename):
