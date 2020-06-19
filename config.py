@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+    config
+    ~~~~~~~~~
+
+    maps read pattern from json file.
+
+    :copyright: 2020 rad-coon
+    :license: BSD-3-Clause
+"""
+
 class Config:
   def __init__(self, pattern_json):
     self.quotechar = pattern_json['quotechar']
