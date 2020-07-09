@@ -16,7 +16,7 @@
             },
             "args": [
                 "convert",
-                "input.csv",
+                "GuestList.xls",
                 "output.csv",
                 "pattern.json"
             ],

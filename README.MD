@@ -1,5 +1,6 @@
-# 0. CSV-Filter
-Dieser CSV-Filter wurde entwickelt um aus einer Quell-CSV-Datei Daten zu lesen und nur die freigegebenen Spalten in eine Ziel-CSV-Datei zu übertragen.
+# 0. Excel und CSV-Filter
+Dieser CSV-Filter wurde entwickelt um aus einer Quell-CSV oder Excel-Datei Daten zu lesen und nur die freigegebenen Spalten und Zeilen in eine Ziel-CSV-Datei zu übertragen. Ebenfalls lässt sich der Inhalt von Zellen via Regex festlegen oder ganz durch einen alternativen Text ersetzen.
+
 
 Das CLI basierende Skript wurde auf Basis von Flask entwickelt.
 
@@ -45,8 +46,9 @@ Folgende Parameter müssen in der JSON-Datei zwingend angegeben werdem:
 |`delimiter`|Gibt sowohl für die Quell-, als auch für die Ziel-CSV-Datei an, welche(s) Zeichen zum trennen der Spalten verwendet werden soll.|`","` oder `";"` etc.|
 |`quotechar`|Gibt für die Quell-, als auch für die Ziel-CSV-Datei an, welcher Charakter benutzt werden soll, Texte einer Zelle zu Umranden, welche den definierten Delimiter enthalten|`"\""` oder `"^"` etc. |
 |`ignore_first_line`|Oft wird bei einer CSV-Datei auch eine Header-Zeile mitgeliefert, welche die Spalten beschreibt. Mit diesem Parameter wird gesteuert, ob diese Zeile mitkopiert werden soll|`true` oder `false`|
-|`schema`|Gibt an welche Spalten kopiert werden sollen. Hierzu wird ein Array von Booleans übergeben. Für jede Spalte muss ein Boolean übergeben werden. Die Reihenfolge der Booleans im Array entspricht der Reihenfolge der Spalten in der Quell-CSV-Datei.|`[true, true, true, true, true, true, false, true, true]`|
-|`logging.log_to_file_ile`|Gibt an ob zusätzlich eine Logdatei angelegt werden soll. Logdateien werden max 5MB groß. Danach bekommt die Logdatei den Suffix .1 / .2 etc. und es wird eine neue Logfile angelegt. Es werden maximal fünf Vorgänger aufgehoben.|`true` oder `false`|
+|`schema_column`|Gibt an welche Spalten kopiert werden sollen. Hierzu wird ein Array von Booleans übergeben. Alternativ zu einem Boolean kann auch ein Element von folgendem Aufbau übergeben werden: ```{"regex": "(?:Ja\nJa\n)(Ja)", "group": 1, "alternate": "Nein"}``` Wenn der `Regex` in der Zelle matcht, wird der Wert in die Ziel-Zelle geschrieben, welcher in der Regex-Matchgruppe `group` ist. Sollte der Regex nichts finden, wird der Wert der in `alternate` eingetragen ist in der Ziel-Zelle gespeichert. Für jede Spalte muss ein Wert übergeben werden. Die Reihenfolge der Booleans im Array entspricht der Reihenfolge der Spalten in der Quell-CSV-Datei.|`[true, true, true, true, true, true, false, {"regex": "(?:Ja\nJa\n)(Ja)", "group": 1, "alternate": "Nein"}, true]`|
+|`schema_row`|Gibt an, welche Zeilen übertragen werden sollen. Wenn die zu lesende Datei mehr Zeilen hat, als hier angegeben werden, fängt der Abgleich wieder mit dem ersten Element an. Hat die Datei als 6 Zeilen und es wurden nur drei Werte definiert, bekommen Zeile 4, 5 und 6 auch die Werte 1, 2 und 3. Auf diese Weise können leere Zeilen und unwichtige Zeilen aussortiert werden.|`[false, true, true]`|
+|`logging.log_to_file_ile`|Gibt an ob zusätzlich eine Logdatei angelegt werden soll. Logdateien werden max 5MB groß. Danach bekommt die Logdatei den Suffix .1 / .2 etc. und es wird eine neue Logfile angelegt. Es werden maximal fünf Vorgänger aufgehoben.|`true`, `false`|
 |`logging.logfile`|Gibt den Pfad zur Logdatei an.|`C:/logs/converter.log`|
 |`logging.log_debug`|Gibt an, ob das Skript im Debugmodus gestartet werden soll. Hierbei werden erheblich mehr Log-Meldungen erzeugt.|`true` oder `false`|
 |`logging.backup_count`|Gibt wie viele Backups vom Logging aufgehoben werden sollen|`5`|
